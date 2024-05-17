@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Animate Placeholder</title>
+<style>
+  @keyframes placeholderAnimation {
+    0% { content: "ipsum"; }
+    10% { content: "dolor"; }
+    20% { content: "sit"; }
+    30% { content: "amet"; }
+    40% { content: "consectetur"; }
+    50% { content: "adipisicing"; }
+    60% { content: "elit"; }
+    70% { content: "Hic"; }
+    80% { content: "atque"; }
+    90% { content: "fuga"; }
+    100% { content: "ipsum"; }
+  }
+
+  #spin {
+    animation: spin 20s linear infinite;
+  }
+
+  @keyframes spin {
+    0% { content:"ipsum"; }
+    10% { content:"dolor"; }
+    20% { content:"sit"; }
+    30% { content:"amet"; }
+    40% { content:"consectetur"; }
+    50% { content: "adipisicing"; }
+    60% { content: "elit"; }
+    70% { content: "Hic"; }
+    80% { content: "atque"; }
+    90% { content: "fuga"; }
+  }
+</style>
+</head>
+<body>
+
+<p>Lorem <span id="spin"></span></p>
+<input type="text" id="animated-placeholder" placeholder="ipsum">
+
+<script>
+  const placeholderTexts = ["ipsum", "dolor", "sit", "amet", "consectetur", "adipisicing", "elit", "Hic", "atque", "fuga"];
+  const input = document.getElementById('animated-placeholder');
+  let index = 0;
+
+  function changePlaceholder() {
+    input.setAttribute('placeholder', placeholderTexts[index]);
+    index = (index + 1) % placeholderTexts.length;
+  }
+
+  setInterval(changePlaceholder, 2000); // Change every 2 seconds
+</script>
+
+</body>
+</html>

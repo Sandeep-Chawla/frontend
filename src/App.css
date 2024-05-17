@@ -1,0 +1,40 @@
+
+@font-face {
+  font-family: Montserrat;
+  src: url(./assets/Montserrat-VariableFont_wght.ttf);
+}
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+#react-select-3-listbox::-webkit-scrollbar-track {
+  background-color: white; /* Change the color as needed */;
+}
+
+/* Change scrollbar thumb (the draggable handle) color */
+#react-select-3-listbox::-webkit-scrollbar-thumb {
+  background-color: #1b5577; /* Change the color as needed */
+   border-radius: 5px; /* Optional: Round the corners of the thumb */
+}
+
+/* Optional: Adjust scrollbar width and height */
+#react-select-3-listbox::-webkit-scrollbar {
+  width: 6px;
+}
