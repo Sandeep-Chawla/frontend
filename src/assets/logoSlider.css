@@ -1,0 +1,22 @@
+.slider {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+  }
+  
+  .slider-inner {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+  }
+  
+  .slide {
+    flex: 1 0 25%; /* Show 4 items at a time */
+    box-sizing: border-box;
+    padding: 1rem;
+  }
+  
+  .slide img {
+    width: 100%;
+    height: auto;
+  }
+  
