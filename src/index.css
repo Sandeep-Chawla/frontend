@@ -7,7 +7,7 @@ p{
 }
 
 input,button{
-    @apply h-6 w-full outline-none md:h-8 
+    @apply w-full outline-none 
 }
 h1{
     @apply text-[36px] md:text-[40px] font-bold

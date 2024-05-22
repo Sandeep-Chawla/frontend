@@ -8,6 +8,10 @@ export default {
     extend: {
       colors: {
         primary: '#1b5577',
+      },
+      boxShadow:{
+        "card": "0px 17px 46.06px 2.94px rgba(40, 40, 40,0.75)",
+
       }
     },
   },
