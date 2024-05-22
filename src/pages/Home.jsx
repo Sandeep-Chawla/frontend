@@ -8,6 +8,9 @@ import { fab } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Slider from "../components/Slider";
 import SearchBar from "../components/Search";
+import SwiperSlider from "../components/SwiperSlider";
+import LogoSlider from "../components/LogoSlider";
+import Sidebar from "../components/Sidebar";
 
 // Add all Font Awesome Free solid icons to the library
 library.add(fas, fab);
@@ -92,6 +95,7 @@ function Home() {
   };
   return (
     <>
+    <Sidebar />
       <div className="w-full h-[90vh] flex  justify-center">
         <div className="bg-[url(https://images.unsplash.com/photo-1584282540740-6b523ca98e00?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)] bg-cover bg-center w-11/12 md:w-10/12 h-5/6 rounded-[36px] relative flex items-end">
           <div className="grid md:grid-cols-[auto,1fr,auto] mx-auto w-10/12 relative origin-bottom -top-3/4 md:top-[-40%] gap-4 items-start h-14">
@@ -125,18 +129,13 @@ function Home() {
           </div>
         </div>
       </div>
-      <Slider />
-      <div>
-      <h1>
-     Heading 1
-      </h1>
-      <h2>heading 2</h2>
-      <h3>heading 3</h3>
-      <h4>heading 4</h4>
-      <h5>heading 5</h5>
-      <h6> heading 6</h6>
-      <p>paragraph</p>
-      </div>
+        <Slider />
+        <div>
+          <SwiperSlider />
+        </div>
+        <div>
+          <LogoSlider/>
+        </div>
     </>
   );
 }
