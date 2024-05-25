@@ -73,7 +73,7 @@ function Slider() {
       >
         <div className="absolute top-5 left-0 flex w-full mx-auto justify-evenly">
           {slides.map((_, index) => (
-            <div key={index} className="w-1/6 h-0.5 bg-gray-400 relative">
+            <div key={index} className="w-1/6 h-1 bg-white relative">
               <div
                 className={`bg-primary h-full `}
                 style={{

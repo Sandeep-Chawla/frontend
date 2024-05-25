@@ -29,6 +29,8 @@ const options = [
 function Home() {
   const [selectedOption, setSelectedOption] = useState(null);
   const [isFocused, setIsFocused] = useState(false);
+  const [heroImage, setHeroImage] = useState('');
+  const [heroText, setHeroText] = useState('');
   const [loading, setLoading] = useState(true);
   const [dataLoaded, setDataLoaded] = useState(false);
 
@@ -46,6 +48,7 @@ function Home() {
     // Clear the timeout if the component unmounts
     return () => clearTimeout(minLoadingTime);
   }, []);
+
 
   const handleChange = (selectedOption) => {
     setSelectedOption(selectedOption);
@@ -114,7 +117,28 @@ function Home() {
     }),
   };
 
+  
+
+
+  useEffect(() => {
+    fetch("https://whitehat.realty/api/v1/get-hero-sections")
+      .then((response) => response.json())
+      .then((data) => {
+        
+        const heroData = data.api_data;
+       const heroImage = heroData.hero_image;
+
+       const heroText  = heroData.title;
+       setHeroImage(heroImage)
+       setHeroText(heroText)
+        
+      })
+      .catch((error) => {
+        console.error("Error fetching hero sections:", error);
+      });
+  }, []);
   const isLoading = loading || !dataLoaded;
+
 
   return (
     <div>
@@ -122,7 +146,8 @@ function Home() {
         {isLoading ? (
           <Skeleton className="w-[90vw] md:w-[80vw] h-5/6 rounded-[36px] relative flex items-end" />
         ) : (
-          <div className="bg-[url(https://images.unsplash.com/photo-1584282540740-6b523ca98e00?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)] bg-cover bg-center w-11/12 md:w-10/12 h-5/6 rounded-[36px] relative flex items-end">
+          <div className={` bg-cover h-full bg-center w-11/12 md:w-10/12 rounded-[36px] relative flex flex-col justify-center`} style={{ backgroundImage: `url(${heroImage})` }}>
+            <h3 className="text-center text-white text-4xl pb-10">{heroText}</h3>
             <div className="grid md:grid-cols-[auto,1fr,auto] mx-auto w-10/12 relative origin-bottom -top-3/4 md:top-[-40%] gap-4 items-start h-14">
               <Select
                 className="locality cursor-pointer px-4 text-primary z-20 bg-white text-2xl rounded-full outline-none font-bold"
