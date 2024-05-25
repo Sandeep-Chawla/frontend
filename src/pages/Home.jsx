@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Select from "react-select";
 
 import { library } from "@fortawesome/fontawesome-svg-core";
@@ -30,6 +30,8 @@ const options = [
 function Home() {
   const [selectedOption, setSelectedOption] = useState(null);
   const [isFocused, setIsFocused] = useState(false);
+  const [heroImage, setHeroImage] = useState('');
+  const [heroText, setHeroText] = useState('');
 
   // Handler for change event
   const handleChange = (selectedOption) => {
@@ -98,13 +100,33 @@ function Home() {
       color: "#1b5577", // Set color of the placeholder text
     }),
   };
+  
+
+
+  useEffect(() => {
+    fetch("https://whitehat.realty/api/v1/get-hero-sections")
+      .then((response) => response.json())
+      .then((data) => {
+        
+        const heroData = data.api_data;
+       const heroImage = heroData.hero_image;
+
+       const heroText  = heroData.title;
+       setHeroImage(heroImage)
+       setHeroText(heroText)
+        
+      })
+      .catch((error) => {
+        console.error("Error fetching hero sections:", error);
+      });
+  }, []);
 
   return (
     <>
-      <Sidebar />
-      <div className="w-full h-[90vh] flex justify-center">
-        <div className="bg-[url(https://images.unsplash.com/photo-1584282540740-6b523ca98e00?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)] bg-cover bg-center w-11/12 md:w-10/12 h-5/6 rounded-[36px] relative flex items-end">
-          <div className="grid md:grid-cols-[auto,1fr,auto] mx-auto w-10/12 relative origin-bottom -top-3/4 md:top-[-40%] gap-4 items-start h-14">
+      <div className="w-full h-[90vh] flex justify-center mb-5">
+        <div className={` bg-cover h-full bg-center w-11/12 md:w-10/12 rounded-[36px] relative flex flex-col justify-center`} style={{ backgroundImage: `url(${heroImage})` }}>
+          <h3 className="text-center text-white text-4xl pb-10">{heroText}</h3>
+          <div className="grid md:grid-cols-[auto,1fr,auto] mx-auto w-10/12 relative origin-bottom gap-4 items-start h-14">
             <Select
               className="locality cursor-pointer px-4 text-primary z-20 bg-white text-2xl rounded-full outline-none font-bold"
               value={selectedOption}
@@ -135,15 +157,17 @@ function Home() {
         </div>
       </div>
       <Slider />
-      <SwiperSlider />
+      
       <Section />
       <Section_two />
       <div>
         <CardRight />
         <CardLeft />
       </div>
-      {/* Cards */}
-      <div className="w-11/12 md:w-10/12 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <LogoSlider />
+      <SwiperSlider />
+      <div className="pt-10 pb-10 bg-[#d7d7d72b]">
+      <div className="w-11/12 md:w-10/12 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-10">
         <Card />
         <Card />
         <Card />
@@ -151,7 +175,8 @@ function Home() {
         <Card />
         <Card />
       </div>
-      <LogoSlider />
+      </div>
+      
     </>
   );
 }

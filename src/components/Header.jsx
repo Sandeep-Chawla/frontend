@@ -8,15 +8,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 library.add(fas, fab);
 
-function Header() {
+function Header({ toggleSidebar }) {
   return (
-    <header className="flex justify-between items-center w-10/12 py-4 mx-auto">
+    <header className="flex justify-between items-center w-10/12 py-4 mx-auto" >
       <div className=" w-1/2 md:w-1/6">
         <img src="public/logo.png" alt="" className="" />
       </div>
-      <div className="relative text-4xl">
-        <FontAwesomeIcon icon="fa-solid fa-house" />
-        <FontAwesomeIcon icon="fa-solid fa-bars" className="absolute -right-1 bg-white -bottom-2 rounded-md"/>
+      <div className="relative text-4xl z-[102]" id="menuIcon" onClick={toggleSidebar}>
+        <FontAwesomeIcon id="iconBar" icon="fa-solid fa-list" />
       </div>
     </header>
   );
