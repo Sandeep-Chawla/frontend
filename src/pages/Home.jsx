@@ -146,9 +146,9 @@ function Home() {
         {isLoading ? (
           <Skeleton className="w-[90vw] md:w-[80vw] h-5/6 rounded-[36px] relative flex items-end" />
         ) : (
-          <div className={` bg-cover h-full bg-center w-11/12 md:w-10/12 rounded-[36px] relative flex flex-col justify-center`} style={{ backgroundImage: `url(${heroImage})` }}>
+          <div className={` bg-cover bg-center w-11/12 md:w-10/12 rounded-[36px] relative flex flex-col justify-center  h-5/6 `} style={{ backgroundImage: `url(${heroImage})` }}>
             <h3 className="text-center text-white text-4xl pb-10">{heroText}</h3>
-            <div className="grid md:grid-cols-[auto,1fr,auto] mx-auto w-10/12 relative origin-bottom -top-3/4 md:top-[-40%] gap-4 items-start h-14">
+            <div className="grid md:grid-cols-[auto,1fr,auto] mx-auto w-10/12 relative origin-bottom gap-4 items-start h-14">
               <Select
                 className="locality cursor-pointer px-4 text-primary z-20 bg-white text-2xl rounded-full outline-none font-bold"
                 value={selectedOption}
