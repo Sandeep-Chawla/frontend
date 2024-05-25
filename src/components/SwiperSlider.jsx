@@ -1,6 +1,9 @@
-import React, { Component } from "react";
 import Carousel from "react-spring-3d-carousel";
 import { v4 as uuidv4 } from 'uuid';
+import React, { useState, useEffect, Component } from "react";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
+
 
 import { config } from "react-spring";
 
@@ -62,10 +65,11 @@ export default class SwiperSlider extends Component {
       [e.target.name]: parseInt(e.target.value, 10) || 0
     });
   };
+  
 
   render() {
     return (
-      <div className="md:w-10/12 w-11/12 mx-auto shadow-card" style={{ backgroundColor: "rgb(235, 232, 232)" }}>
+      <div className="md:w-10/12 w-11/12 mx-auto shadow-card my-4" style={{ backgroundColor: "rgb(235, 232, 232)" }}>
         <h4 style={{ padding: "40px 40px" }}>Sponsored Listing</h4>
         <div className="md:px-52" style={{ height: "500px" }}>
           <Carousel

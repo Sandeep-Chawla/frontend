@@ -1,8 +1,20 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from "react";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 import '../assets/logoSlider.css'; // Import the CSS file
 
 const LogoSlider = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    // Simulate data loading
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 2000); // Minimum 2 seconds
+
+    return () => clearTimeout(timer);
+  }, []);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -27,9 +39,15 @@ const LogoSlider = () => {
         <div className="slider-inner" style={{ transform: `translateX(-${currentIndex * (100 / visibleSlides)}%)` }}>
           {[...Array(totalSlides * 2).keys()].map((index) => (
             <div key={index} className="slide">
-              <div className="bg-white p-4 rounded-lg shadow-md">
-                <img src={`../developers_logo/${(index % totalSlides) + 1}.png`} alt={`logo ${(index % totalSlides) + 1}`} />
-              </div>
+              {isLoading ? (
+                <div className="bg-white p-4 rounded-lg shadow-md">
+                  <Skeleton className="w-full h-60" />
+                </div>
+              ) : (
+                <div className="bg-white p-4 rounded-lg shadow-md">
+                  <img src={`../developers_logo/${(index % totalSlides) + 1}.png`} alt={`logo ${(index % totalSlides) + 1}`} />
+                </div>
+              )}
             </div>
           ))}
         </div>

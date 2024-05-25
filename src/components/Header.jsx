@@ -12,7 +12,7 @@ function Header() {
   return (
     <header className="flex justify-between items-center w-10/12 py-4 mx-auto">
       <div className=" w-1/2 md:w-1/6">
-        <img src="public/logo.png" alt="" className="" />
+        <img src="logo.png" alt="" className="" />
       </div>
       <div className="relative text-4xl">
         <FontAwesomeIcon icon="fa-solid fa-house" />
