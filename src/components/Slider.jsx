@@ -66,7 +66,7 @@ function Slider() {
   };
 
   return (
-    <div className="w-full h-[40vh] md:h-[60vh] flex justify-center">
+    <div className="w-full h-[60vh] flex justify-center">
       <div
         className={`slider-img bg-cover bg-center w-11/12 md:w-8/12 h-5/6 rounded-3xl relative`}
         style={image}

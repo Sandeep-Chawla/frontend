@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 
-function Section_two() {
+function Section_two(props) {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -15,16 +15,16 @@ function Section_two() {
   }, []);
 
   return (
-    <div className='h-screen w-11/12 md:w-10/12 items-start justify-center relative mx-auto flex flex-col'>
-      <div className='h-full w-3/5'>
+    <div className='md:h-screen w-11/12 md:w-10/12 items-start justify-center relative mx-auto flex flex-col-reverse'>
+      <div className='md:   h-full w-full md:w-3/5'>
         {isLoading ? (
-          <div className='w-1/2 h-2/5  mb-4 mx-auto'>
+          <div className='md:w-1/2 h-2/5  mb-4 mx-auto'>
             <Skeleton className='w-full h-full' />
           </div>
         ) : (
-          <div className='w-1/2 h-2/5  mb-4 mx-auto'>
+          <div className='md:w-1/2 w-full h-2/5  mb-4 mx-auto'>
             <img
-              src="https://images.unsplash.com/photo-1612531726554-4fd9f157132d?q=80&w=1936&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+              src="project-higlights.png"
               className='w-full h-full object-cover'
               alt="Loaded content"
             />
@@ -49,11 +49,11 @@ function Section_two() {
         )}
       </div>
       {isLoading ? (
-          <div className='w-[40vw] h-[40vh] absolute right-0'>
+          <div className='md:w-[40vw] w-full h-[40vh] md:absolute right-0'>
             <Skeleton className='w-full h-full' />
           </div>
         ) : (
-      <div className='bg-gray-400 shadow-card w-1/2 h-2/5 absolute right-0'></div>
+      <div className='bg-[#EBE8E8] flex items-center px-14 font-bold text-lg capitalize text-primary shadow-card md:w-1/2 md:h-2/5 md:absolute right-0'>{props.text}</div>
         )}
     </div>
   );
