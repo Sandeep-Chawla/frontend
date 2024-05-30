@@ -17,7 +17,7 @@ function Header({ toggleSidebar }) {
         </Link>
       </div>
       <div className="flex gap-4 items-center">
-    <div className=" bg-[#ff0000] leading-none text-white h-fit p-2">Post Your Property Ror Free</div>
+    <div className=" bg-[#ff0000] leading-none text-white h-fit p-2">Post Your Property For Free</div>
       <div className="relative text-4xl z-[102]" id="menuIcon" onClick={toggleSidebar}>
         <FontAwesomeIcon id="iconBar" icon="fa-solid fa-list" />
       </div>

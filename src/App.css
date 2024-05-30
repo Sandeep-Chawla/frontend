@@ -31,3 +31,7 @@
    border-radius: 5px; /* Optional: Round the corners of the thumb */
 }
 
+.swiper-pagination-progressbar-fill {
+  background: #1b5577 !important; /* Custom color for the progress bar fill */
+}
+
