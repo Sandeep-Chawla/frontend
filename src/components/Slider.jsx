@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
@@ -8,28 +8,7 @@ import { Pagination, EffectFade, Autoplay } from "swiper/modules";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 
-function Slider() {
-  const [slides, setSlides] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch("https://whitehat.realty/api/v1/get-sliders");
-        const data = await response.json();
-        const heroData = data.api_data;
-        const images = heroData.map(item => item.image);
-        setSlides(images);
-        setLoading(false);
-      } catch (error) {
-        console.error("Error fetching hero sections:", error);
-        setLoading(false);
-      }
-    };
-
-    fetchData();
-  }, []);
-
+const Slider = ({ slides, loading }) => {
   if (loading) {
     return (
       <div className="w-full h-[60vh] flex justify-center">
@@ -62,6 +41,6 @@ function Slider() {
       </Swiper>
     </div>
   );
-}
+};
 
 export default Slider;

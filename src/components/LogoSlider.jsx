@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Slider from "react-slick"; // Import the React Slick component
 import Skeleton from "react-loading-skeleton"; // Import the React Loading Skeleton component
 import "slick-carousel/slick/slick.css"; // Import the Slick CSS file
 import "slick-carousel/slick/slick-theme.css"; // Import the Slick theme CSS file
 
-const LogoSlider = () => {
+const LogoSlider = ({ apiData, loading }) => {
   const totalSlides = 9; // Total number of slides
   const settings = {
     dots: false,
@@ -39,23 +39,6 @@ const LogoSlider = () => {
       },
     ],
   };
-
-  const [apiData, setApiData] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    // Fetch hero section data
-    fetch("https://whitehat.realty/api/v1/get-developer-logos")
-      .then((response) => response.json())
-      .then((data) => {
-        setApiData(data.api_data);
-        setLoading(false); // Set loading to false once data is fetched
-      })
-      .catch((error) => {
-        console.error("Error fetching hero sections:", error);
-        setLoading(false); // Set loading to false in case of an error
-      });
-  }, []);
 
   return (
     <div className="w-12/12 mx-auto text-center mt-20 mb-20 bg-[#d7d7d72b] p-10">

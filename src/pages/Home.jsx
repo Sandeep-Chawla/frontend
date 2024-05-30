@@ -4,7 +4,6 @@ import "react-loading-skeleton/dist/skeleton.css";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 import { fab } from "@fortawesome/free-brands-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import CardRight from "../components/CardRight";
 import CardLeft from "../components/CardLeft";
 import Card from "../components/Card";
@@ -36,6 +35,8 @@ function Home() {
   const [loading, setLoading] = useState(true);
   const [apiData, setApiData] = useState([]);
   const [twoSectionsData, setTwoSectionsData] = useState([]);
+  const [logoData, setLogoData] = useState([]);
+  const [slides, setSlides] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -45,11 +46,16 @@ function Home() {
         const heroData = data.api_data.heroSection;
         const insightsData = data.api_data.insights;
         const twoValuesData = data.api_data.twoValuesSystem;
+        const logoData = data.api_data.developerLogos;
 
         setHeroImage(heroData.hero_image);
         setHeroText(heroData.title);
         setApiData(insightsData.reverse());
         setTwoSectionsData(twoValuesData);
+        setLogoData(logoData);
+
+        const sliderImages = data.api_data.sliders.map(item => item.image);
+        setSlides(sliderImages);
 
         setLoading(false); // Set loading to false when data is loaded
       } catch (error) {
@@ -151,11 +157,7 @@ function Home() {
         </div>
       </div>
       <div className="h-screen"></div>
-      {loading ? (
-        <Skeleton className="h-[60vh] w-[90vw] md:w-[66vw] mx-auto block rounded-3xl" />
-      ) : (
-        <Slider />
-      )}
+      <Slider slides={slides} loading={loading} />
       <div className="text-center text-primary text-5xl font-bold py-10">
         How Do We Review a Property
       </div>
@@ -181,8 +183,9 @@ function Home() {
               <CardRight key={item.id} img={item.image} text={item.description} title={item.title} />
             )
           )}
-      <LogoSlider />
+      <LogoSlider apiData={logoData} loading={loading} />
       {loading ? (
+
         <Skeleton className="w-[90vw] md:w-[80vw] h-[80vh] block mx-auto" />
       ) : (
         <SwiperSlider />
