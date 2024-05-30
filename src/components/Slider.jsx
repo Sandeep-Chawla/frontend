@@ -1,69 +1,94 @@
 import React, { useState, useEffect } from "react";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css"; // Import the styles for the skeleton loader
 
 function Slider() {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [isVisible, setIsVisible] = useState(false);
-  
-  const slides = [
-    "https://images.unsplash.com/photo-1581261560738-342ca79fcdc3?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    "https://images.unsplash.com/photo-1615470749121-fb7e38ad335c?q=80&w=1769&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    "https://images.unsplash.com/photo-1629169941760-7c121f1a21db?q=80&w=1810&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  ]; // Your slide content
-  const [progress, setProgress] = useState(Array(slides.length).fill(0));
+  const [isVisible, setIsVisible] = useState(true);
+  const [slides, setSlides] = useState([]);
+  const [loading, setLoading] = useState(true); // State to manage loading
+  const [progress, setProgress] = useState([]);
 
   useEffect(() => {
-    // Set isVisible to true after 2 seconds
-    const timeoutId = setTimeout(() => {
-      setIsVisible(true);
-    }, 2000);
+    const fetchData = async () => {
+      try {
+        const response = await fetch("https://whitehat.realty/api/v1/get-sliders");
+        const data = await response.json();
+        const heroData = data.api_data;
+        const images = heroData.map(item => item.image);
+        setSlides(images);
+        setProgress(Array(images.length).fill(0)); // Initialize progress
+        setLoading(false); // Set loading to false after data is fetched
+      } catch (error) {
+        console.error("Error fetching hero sections:", error);
+        setLoading(false); // Set loading to false even if there's an error
+      }
+    };
 
-    // Clear the timeout when component unmounts or when isVisible becomes true
-    return () => clearTimeout(timeoutId);
-  }, []); // Run only once on component mount
+    fetchData();
+  }, []);
 
   useEffect(() => {
-    // Function to advance to the next slide
+    if (slides.length === 0) return;
+
     const nextSlide = () => {
       setIsVisible(false);
       setTimeout(() => {
         setCurrentSlide((prevSlide) => {
           const newSlide = (prevSlide + 1) % slides.length;
-          if (newSlide === 0) {
-            // Reset progress if we are back to the first slide
-            setProgress(Array(slides.length).fill(0));
-          }
           return newSlide;
         });
         setIsVisible(true);
       }, 1000); // Transition time for fading out
     };
 
-    // Interval to advance the slide every 6 seconds (adjust as needed)
     const intervalId = setInterval(() => {
       nextSlide();
     }, 6000);
 
-    // Interval to update the progress bar every 60ms for a smoother progress
     const progressInterval = setInterval(() => {
       setProgress((prevProgress) => {
         const newProgress = [...prevProgress];
-        newProgress[currentSlide] = Math.min(newProgress[currentSlide] + (100 / 6000) * 60, 100);
+        if (newProgress[currentSlide] < 100) {
+          newProgress[currentSlide] = Math.min(newProgress[currentSlide] + (100 / 6000) * 60, 100);
+        }
         return newProgress;
       });
     }, 60);
 
-    // Clean up the intervals when component unmounts
     return () => {
       clearInterval(intervalId);
       clearInterval(progressInterval);
     };
-  }, [currentSlide, slides.length]); // Re-run effect when currentSlide or the number of slides changes
+  }, [currentSlide, slides.length]);
+
+  useEffect(() => {
+    if (currentSlide === 0) {
+      setProgress(Array(slides.length).fill(0));
+    } else {
+      setProgress((prevProgress) => {
+        const newProgress = [...prevProgress];
+        newProgress[currentSlide] = 0;
+        return newProgress;
+      });
+    }
+  }, [currentSlide]);
 
   const image = {
     backgroundImage: `url(${slides[currentSlide]})`,
     transition: 'opacity 1s ease-in-out',
     opacity: isVisible ? 1 : 0.3,
   };
+
+  if (loading) {
+    return (
+      <div className="w-full h-[60vh] flex justify-center">
+        <div className="w-11/12 md:w-8/12 h-5/6 rounded-3xl relative">
+          <Skeleton height="100%" borderRadius="1.5rem" />
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="w-full h-[60vh] flex justify-center">
@@ -75,7 +100,7 @@ function Slider() {
           {slides.map((_, index) => (
             <div key={index} className="w-1/6 h-1 bg-white relative">
               <div
-                className={`bg-primary h-full `}
+                className={`bg-primary h-full`}
                 style={{
                   width: `${progress[index]}%`,
                 }}

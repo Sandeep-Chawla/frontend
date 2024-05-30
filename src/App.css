@@ -12,29 +12,22 @@
   font-style: normal;
 }
 
+.scrollHide::-webkit-scrollbar{
+  display: none;
+}
+/* Targeting the react-select menu list */
 
-
-
-
-
-
-
-
-
-
-
-
-#react-select-3-listbox::-webkit-scrollbar-track {
-  background-color: white; /* Change the color as needed */;
+/* For WebKit browsers (Chrome, Safari) */
+.react-select__menu-list::-webkit-scrollbar {
+  width: 6px;
 }
 
-/* Change scrollbar thumb (the draggable handle) color */
-#react-select-3-listbox::-webkit-scrollbar-thumb {
+.react-select__menu-list::-webkit-scrollbar-track {
+  background: white; /* Background of the scrollbar track */
+}
+
+.react-select__menu-list::-webkit-scrollbar-thumb {
   background-color: #1b5577; /* Change the color as needed */
    border-radius: 5px; /* Optional: Round the corners of the thumb */
 }
 
-/* Optional: Adjust scrollbar width and height */
-#react-select-3-listbox::-webkit-scrollbar {
-  width: 6px;
-}

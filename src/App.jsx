@@ -8,6 +8,7 @@ import Layout from './components/Layout';
 import Home from './pages/Home';
 import About from './pages/About';
 import Contact from './pages/Contact';
+import Calculator from "./pages/Calculator";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <Routes>
       <Route exact path="/" element={<Layout><Home /></Layout>} />
       <Route exact path="/about" element={<Layout><About /></Layout>} />
+      <Route exact path="/Calculator" element={<Layout><Calculator /></Layout>} />
       <Route exact path="/contact" element={<Layout><Contact /></Layout>} />
       </Routes>
     </Router>

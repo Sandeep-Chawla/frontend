@@ -17,36 +17,18 @@ import Sidebar from "../components/Sidebar";
 import Slider from "../components/Slider";
 import Section_two from "../components/Section_two";
 import anime from "animejs/lib/anime.es.js";
-// function typing() {
-//   var textWrapper = document.querySelector(".letters");
-//   textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g,"<span class='letter'>$&</span>");
-
-//   anime
-//     .timeline({ loop: true })
-//     .add({
-//       targets: ".letter",
-//       opacity: [0.3, 1], // Start from opacity 0.3 and end at opacity 1
-//       translateX: [100, 0], // Start from 100px to the right (off-screen) and move to 0px
-//       easing: "easeOutExpo",
-//       duration: 2000,
-//       delay: (el, i) => 80 * i, // No need to add 1 to i
-//     })
-//     .add({
-//       targets: ".ml1",
-//       opacity: 0,
-//       duration: 1200,
-//       easing: "easeOutExpo",
-//       delay: 2000,
-//     });
-// }
-
-// Add all Font Awesome Free solid icons to the library
+import TrendingCard from "../components/TrendingCard";
 library.add(fas, fab);
 
 const options = [
+  { value: "noida sec 44", label: "Noida Sec 44" },
+  { value: "Siddharth Vihar", label:"Siddharth Vihar" },
+  { value: "lucknow", label: "Lucknow" },
+];
+const cities = [
+  { value: "delhi", label: "Delhi" },
   { value: "noida", label: "Noida" },
   { value: "gaziabad", label: "Gaziabad" },
-  { value: "lucknow", label: "Lucknow" },
 ];
 
 function Home() {
@@ -55,10 +37,15 @@ function Home() {
   const [heroImage, setHeroImage] = useState("");
   const [heroText, setHeroText] = useState("");
   const [loading, setLoading] = useState(true);
+  const [apiData, setApiData] = useState([]);
+  const [twoSectionsData, setTwoSectionsData] = useState([]);
   function typing() {
     var textWrapper = document.querySelector(".letters");
-    textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g,"<span class='letter'>$&</span>");
-  
+    textWrapper.innerHTML = textWrapper.textContent.replace(
+      /\S/g,
+      "<span class='letter'>$&</span>"
+    );
+
     anime
       .timeline({ loop: true })
       .add({
@@ -80,7 +67,9 @@ function Home() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("https://whitehat.realty/api/v1/get-hero-sections");
+        const response = await fetch(
+          "https://whitehat.realty/api/v1/get-hero-sections"
+        );
         const data = await response.json();
         const heroData = data.api_data;
         setHeroImage(heroData.hero_image);
@@ -93,8 +82,34 @@ function Home() {
         setLoading(false); // Set loading to false even if there's an error
       }
     };
-  
+
     fetchData();
+  }, []);
+  useEffect(() => {
+    const fetchApiData = async () => {
+      try {
+        const response = await fetch("https://whitehat.realty/api/v1/get-insights");
+        const data = await response.json();
+        setApiData(data.api_data.reverse());
+      } catch (error) {
+        console.error("Error fetching API data:", error);
+      }
+    };
+
+    fetchApiData();
+  }, []);
+  useEffect(() => {
+    const twoSectionData = async () => {
+      try {
+        const response = await fetch("https://whitehat.realty/api/v1/get-two-value-systems");
+        const data = await response.json();
+        setTwoSectionsData(data.api_data);
+      } catch (error) {
+        console.error("Error fetching API data:", error);
+      }
+    };
+
+    twoSectionData();
   }, []);
   const handleChange = (selectedOption) => {
     setSelectedOption(selectedOption);
@@ -134,7 +149,6 @@ function Home() {
     }),
     menu: (provided) => ({
       ...provided,
-      width: "90%",
       fontSize: 14,
       color: "#1b5577",
     }),
@@ -164,7 +178,7 @@ function Home() {
   };
 
   return (
-    <div>
+    <div className="bg-[url(background3.jpg)]">
       <div className="w-full h-[90vh] flex justify-center">
         {loading ? (
           <Skeleton className="w-[90vw] md:w-[80vw] h-5/6 rounded-[36px] relative flex items-end" />
@@ -174,12 +188,22 @@ function Home() {
             style={{ backgroundImage: `url(${heroImage})` }}
           >
             <div className="w-full h-full absolute top-0 left-0 bg-[#00000050] rounded-[36px]"></div>
-            <h3 className="letters text-center relative z-10 text-white text-4xl pb-10">
+            <h3 className="letters text-center relative z-10 text-white text-2xl pb-10">
               {heroText}
             </h3>
-            <div className="grid md:grid-cols-[auto,1fr,auto] mx-auto w-10/12 relative origin-bottom gap-4 items-start h-14">
+            <div className="grid md:grid-cols-[auto,auto,1fr,auto] mx-auto w-10/12 relative origin-bottom gap-4 items-start h-14">
+              <Select
+                className="city cursor-pointer px-4 text-primary z-20 bg-white text-2xl rounded-full outline-none font-bold"
+                classNamePrefix="react-select"
+                value={selectedOption}
+                onChange={handleChange}
+                options={cities}
+                placeholder="CITY"
+                styles={customStyles}
+              />
               <Select
                 className="locality cursor-pointer px-4 text-primary z-20 bg-white text-2xl rounded-full outline-none font-bold"
+                classNamePrefix="react-select"
                 value={selectedOption}
                 onChange={handleChange}
                 options={options}
@@ -208,46 +232,54 @@ function Home() {
         )}
       </div>
       <Sidebar />
-
+        <div className="w-[90vw] md:w-[80vw] mx-auto overflow-x-scroll scrollHide">
+          <div className="border border-b-[1px] border-gray-600"></div>
+          <div className="flex w-fit py-10">
+          <TrendingCard/>
+          <TrendingCard/>
+          <TrendingCard/>
+          <TrendingCard/>
+          <TrendingCard/>
+          </div>
+        </div>
+        <div className="h-screen"></div>
       {loading ? (
         <Skeleton className="h-[60vh] w-[90vw] md:w-[66vw] mx-auto block rounded-3xl" />
       ) : (
         <Slider />
       )}
+      <div className="text-center text-primary text-5xl font-bold py-10">How Do We Rewiew a Property</div>
       {/* location */}
-      <Section text="Discover the Prime Location details of a real estate project. The right location makes all the difference.
-      " img='https://g5-orion-clients.g5dxm.com/g5-c-ibsddh6p-pillar-properties-client/g5-cl-55us94ubz-the-lyric-capitol-hill/uploads/apartments-for-rent-seattle-hero.jpg' />
+      <Section
+        text="Discover the Prime Location details of a real estate project. The right location makes all the difference."
+        img="location.png"
+        title='location'
+      />
       {/* highlights */}
-      <Section_two text="What makes a project special? We spotlight the key features that makes a Real Estate project truly stand out.." />
-      {/* floor plan */}
-      <CardLeft text="A good floor plan is essential for comfortable living. 
-Explore if the design can adapt to different lifestyle needs.
-"
-        img="floor-plan.png"
-        />
-        {/* amenities */}
-      <CardRight
-        text="Amenities can greatly enhance your living experience. 
-        Evaluate the quality and variety of facilities with us."
-        img="living room 3.webp" 
-      />
-      {/* possesion */}
-      <CardLeft text="Getting your new home on time is crucial. We ensure they are transparent about the progress, so you can plan confidently.
-
-"
-        img="possession.webp" />
-        {/* background */}
-      <CardRight
-        text="The developer's reputation is key to a trustworthy investment in the real estate market. We'll help you invest with confidence, knowing you're dealing with reliable developers.
-        "
-        img="https://img.lovepik.com/background/20211021/large/lovepik-the-scene-of-urban-construction-background-image_400149199.jpg"
-      />
-      {/* pricing */}
-      <CardRight
-        text="We analyze the pricing to ensure it's fair and competitive. Our goal is to help you get the best value for your investment.
-        "
-        img="https://taylorwells.com.au/wp-content/uploads/2020/06/strategic-pricing1.jpg"
-      />
+      <Section_two text="What makes a project special? We spotlight the key features that makes a Real Estate project truly stand out.." title='highlights' />
+      {loading
+          ? Array(6)
+              .fill()
+              .map((_, index) => (
+                <Skeleton key={index} className="h-72 rounded-3xl" />
+              ))
+          : twoSectionsData.map((item, i) => (
+            i % 2 === 0 ? (
+              <CardLeft
+                key={item.id}
+                img={item.image}
+                text={item.description}
+                title={item.title}
+              />
+            ) : (
+              <CardRight
+                key={item.id}
+                img={item.image}
+                text={item.description}
+                title={item.title}
+              />
+            )
+          ))}
       <LogoSlider />
       {loading ? (
         <Skeleton className="w-[90vw] md:w-[80vw] h-[80vh] block mx-auto" />
@@ -262,9 +294,15 @@ Explore if the design can adapt to different lifestyle needs.
               .map((_, index) => (
                 <Skeleton key={index} className="h-72 rounded-3xl" />
               ))
-          : Array(6)
-              .fill()
-              .map((_, index) => <Card key={index} />)}
+          : apiData.map((item) => (
+              <Card
+                key={item.id}
+                url={item.url}
+                description={item.description}
+                title={item.title}
+                icon={item.icon}
+              />
+            ))}
       </div>
     </div>
   );
