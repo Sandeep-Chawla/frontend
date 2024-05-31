@@ -10,28 +10,39 @@
   font-family: "Montserrat", sans-serif;
   font-optical-sizing: auto;
   font-style: normal;
+  border: 1px solid black !important;
+  /* background:red; */
 }
 
 .scrollHide::-webkit-scrollbar{
   display: none;
 }
-/* Targeting the react-select menu list */
 
-/* For WebKit browsers (Chrome, Safari) */
 .react-select__menu-list::-webkit-scrollbar {
   width: 6px;
 }
 
 .react-select__menu-list::-webkit-scrollbar-track {
-  background: white; /* Background of the scrollbar track */
+  background: white; 
 }
 
 .react-select__menu-list::-webkit-scrollbar-thumb {
-  background-color: #1b5577; /* Change the color as needed */
-   border-radius: 5px; /* Optional: Round the corners of the thumb */
+  background-color: #1b5577; 
+   border-radius: 5px; 
 }
 
-.swiper-pagination-progressbar-fill {
-  background: #1b5577 !important; /* Custom color for the progress bar fill */
+.swiper-pagination-bullet {
+  background-color: #ff0000 !important; 
+  width: 10px; 
+  height: 10px; 
+  margin: 0 5px; 
+  border-radius: 50%; 
 }
-
+.swiper-button-prev, .swiper-button-next{
+  color: #1b5577 !important;
+}
+.mySwiper  .swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

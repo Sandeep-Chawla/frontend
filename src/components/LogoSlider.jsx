@@ -58,8 +58,8 @@ const LogoSlider = ({ apiData, loading }) => {
         // Render actual data once loaded
         <Slider {...settings}>
           {apiData.map((item) => (
-            <div key={item.id} className="slide p-3">
-              <div className="bg-white h-32 rounded-lg flex items-center justify-center">
+            <div key={item.id} className="slide p-3 ">
+              <div className="bg-white h-32 z-10 relative rounded-lg flex items-center justify-center before:w-full before:h-full before:-z-10 before:absolute before:bg-primary before:opacity-20">
                 <img className="h-3/4" src={item.image} alt={item.title} />
               </div>
             </div>

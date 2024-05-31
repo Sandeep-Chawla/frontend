@@ -40,7 +40,7 @@ export default function SwiperSlider() {
           <div className="shadow"></div>
           <div className="label">
             <div className="icon">
-              <i className="fas fa-walking"></i>
+            <img src='sign-01.png'/>
             </div>
             <div className="info">
               <div className="main">Blonkisoaz</div>
@@ -53,7 +53,7 @@ export default function SwiperSlider() {
           <div className="shadow"></div>
           <div className="label">
             <div className="icon">
-              <i className="fas fa-snowflake"></i>
+              <img src='sign-01.png'/>
             </div>
             <div className="info">
               <div className="main">Oretemauw</div>
@@ -67,7 +67,7 @@ export default function SwiperSlider() {
           <div className="shadow"></div>
           <div className="label">
             <div className="icon">
-              <i className="fas fa-snowflake"></i>
+              <img src='sign-01.png'/>
             </div>
             <div className="info">
               <div className="main">Oretemauw</div>
@@ -82,7 +82,7 @@ export default function SwiperSlider() {
           <div className="shadow"></div>
           <div className="label">
             <div className="icon">
-              <i className="fas fa-snowflake"></i>
+              <img src='sign-01.png'/>
             </div>
             <div className="info">
               <div className="main">Oretemauw</div>
@@ -97,7 +97,7 @@ export default function SwiperSlider() {
           <div className="shadow"></div>
           <div className="label">
             <div className="icon">
-              <i className="fas fa-snowflake"></i>
+              <img src='sign-01.png'/>
             </div>
             <div className="info">
               <div className="main">Oretemauw</div>

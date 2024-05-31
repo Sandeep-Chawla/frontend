@@ -66,9 +66,9 @@ function HeroSection({
           <h3 className="letters text-center relative z-10 text-white text-2xl pb-10">
             {heroText}
           </h3>
-          <div className="grid md:grid-cols-[auto,auto,1fr,auto] mx-auto w-10/12 relative origin-bottom gap-4 items-start h-14">
+          <div className="grid md:grid-cols-[auto,auto,1fr,auto] mx-auto w-10/12 relative origin-bottom  items-start h-14 bg-white rounded-full">
             <Select
-              className="city cursor-pointer px-4 text-primary z-20 bg-white text-2xl rounded-full outline-none font-bold"
+              className="city cursor-pointer px-4 text-primary rounded-s-full z-20 bg-white text-2xl outline-none font-bold"
               classNamePrefix="react-select"
               value={selectedOption}
               onChange={handleChange}
@@ -77,7 +77,7 @@ function HeroSection({
               styles={customStyles}
             />
             <Select
-              className="locality cursor-pointer px-4 text-primary z-20 bg-white text-2xl rounded-full outline-none font-bold"
+              className="locality cursor-pointer px-4 text-primary z-20 border-l-2 bg-white text-2xl outline-none font-bold"
               classNamePrefix="react-select"
               value={selectedOption}
               onChange={handleChange}
@@ -85,7 +85,7 @@ function HeroSection({
               placeholder="LOCALITY"
               styles={customStyles}
             />
-            <div className="rounded-3xl bg-white grid grid-cols-[auto,1fr,auto] items-center px-4 py-2 relative z-10 shadow-2xl">
+            <div className="bg-white grid grid-cols-[auto,1fr,auto] items-center px-4 py-2 relative z-10 ">
               <span>
                 <FontAwesomeIcon
                   icon={["fas", "search"]}
@@ -99,8 +99,8 @@ function HeroSection({
                   }`}
               ></div>
             </div>
-            <div className="hidden md:flex rounded-full bg-white text-center px-12 py-2 h-14 font-bold text-primary text-sm items-center cursor-pointer">
-              FIND
+            <div className="hidden md:flex bg-[#ff0000] text-center px-12 py-2 h-14 font-semibold text-white text-sm items-center cursor-pointer rounded-e-full">
+              Search
             </div>
           </div>
         </div>

@@ -22,12 +22,11 @@ const Slider = ({ slides, loading }) => {
   return (
     <div className="w-full h-[60vh] flex justify-center">
       <Swiper
-        pagination={{ type: "progressbar" }}
-        effect="fade"
-        fadeEffect={{ crossFade: true }}
+        pagination={true}
+        effect="slide" // Change effect to slide
         autoplay={{ delay: 6000, disableOnInteraction: false }}
         loop={true}
-        modules={[Pagination, EffectFade, Autoplay]}
+        modules={[Pagination, Autoplay]}
         className="mySwiper w-11/12 md:w-8/12 h-5/6 rounded-3xl"
       >
         {slides.map((slide, index) => (

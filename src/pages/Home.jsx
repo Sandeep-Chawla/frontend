@@ -15,6 +15,17 @@ import Slider from "../components/Slider";
 import Section_two from "../components/Section_two";
 import TrendingCard from "../components/TrendingCard";
 import HeroSection from "../components/HeroSection";
+
+import { Swiper, SwiperSlide } from 'swiper/react';
+
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
+
+// Import required modules
+import { Pagination, Navigation } from 'swiper/modules';
+
 library.add(fas, fab);
 
 const options = [
@@ -22,10 +33,20 @@ const options = [
   { value: "Siddharth Vihar", label: "Siddharth Vihar" },
   { value: "lucknow", label: "Lucknow" },
 ];
+
 const cities = [
   { value: "delhi", label: "Delhi" },
   { value: "noida", label: "Noida" },
   { value: "gaziabad", label: "Gaziabad" },
+];
+
+// Sample property data
+const properties = [
+  { id: 1, city: "Delhi", name: "Property 1", image: "property1.jpg" },
+  { id: 2, city: "Noida", name: "Property 2", image: "property2.jpg" },
+  { id: 3, city: "Gaziabad", name: "Property 3", image: "property3.jpg" },
+  { id: 4, city: "Delhi", name: "Property 4", image: "property4.jpg" },
+  { id: 5, city: "Noida", name: "Property 5", image: "property5.jpg" },
 ];
 
 function Home() {
@@ -37,6 +58,7 @@ function Home() {
   const [twoSectionsData, setTwoSectionsData] = useState([]);
   const [logoData, setLogoData] = useState([]);
   const [slides, setSlides] = useState([]);
+  const [selectedCity, setSelectedCity] = useState(cities[0]?.label || '');
 
   useEffect(() => {
     const fetchData = async () => {
@@ -133,6 +155,11 @@ function Home() {
     }),
   };
 
+  // Function to filter properties based on the selected city
+  const getFilteredProperties = () => {
+    return properties.filter(property => property.city === selectedCity);
+  };
+
   return (
     <div className="bg-[url(background3.jpg)]">
       <HeroSection
@@ -147,16 +174,48 @@ function Home() {
       />
       <Sidebar />
       <div className="w-[90vw] md:w-[80vw] mx-auto overflow-x-scroll scrollHide">
-        <div className="border border-b-[1px] border-gray-600"></div>
-        <div className="flex w-fit py-10">
-          <TrendingCard />
-          <TrendingCard />
-          <TrendingCard />
-          <TrendingCard />
-          <TrendingCard />
+        <h3>The Most Searched Properties</h3>
+        <div className="border-b-[1px] border-gray-400 mb-4 flex gap-4 font-medium pb-2">
+          {cities.map((item, i) => (
+            <span
+              key={i}
+              onClick={() => setSelectedCity(item.label)}
+              className={`cursor-pointer ${selectedCity === item.label ? 'text-primary font-bold  ' : 'text-gray-500'}`}
+            >
+              {item.label}
+            </span>
+          ))}
         </div>
+        <Swiper
+          slidesPerView={1}
+          spaceBetween={20}
+          loop={true}
+          breakpoints={{
+            640: {
+              slidesPerView: 2,
+            },
+            768: {
+              slidesPerView: 2,
+            },
+            1024: {
+              slidesPerView: 3,
+            },
+          }}
+          pagination={{
+            clickable: true,
+          }}
+          navigation={true}
+          modules={[Pagination, Navigation]}
+          className="mySwiper py-10 px-3"
+        >
+          {getFilteredProperties().map((property, index) => (
+            <SwiperSlide key={index}>
+              <TrendingCard property={property} />
+            </SwiperSlide>
+          ))}
+        </Swiper>
       </div>
-      <div className="h-screen"></div>
+      <div className="h-[50vh]"></div>
       <Slider slides={slides} loading={loading} />
       <div className="text-center text-primary text-5xl font-bold py-10">
         How Do We Review a Property
@@ -185,7 +244,6 @@ function Home() {
           )}
       <LogoSlider apiData={logoData} loading={loading} />
       {loading ? (
-
         <Skeleton className="w-[90vw] md:w-[80vw] h-[80vh] block mx-auto" />
       ) : (
         <SwiperSlider />
