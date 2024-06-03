@@ -197,8 +197,11 @@ function Home() {
             768: {
               slidesPerView: 2,
             },
-            1024: {
+            1200: {
               slidesPerView: 3,
+            },
+            1500: {
+              slidesPerView: 4,
             },
           }}
           pagination={{

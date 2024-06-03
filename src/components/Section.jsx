@@ -19,9 +19,9 @@ function Section(props) {
       {isLoading ? (
         <Skeleton className="w-6/12 md:h-2/5 absolute top-40 left-0" />
       ) : (
-        <div className="bg-[#EBE8E8] flex items-center flex-col justify-center py-10 px-4 md:px-14 font-bold my-4 md:my-0 text-lg capitalize text-primary shadow-card w-full md:w-1/2 h-[40vh] md:h-2/5 md:absolute left-0 z-10 leading-5"><div className="w-full md:text-6xl text-4xl text-center left-0 top-10 uppercase bg-gradient-to-t from-[#837f7f42] from-25% -z-10 to-gray-600 bg-clip-text text-transparent py-2">{props.title}</div>{props.text}</div>
+        <div className="bg-[#EBE8E8] flex items-center flex-col justify-center py-10 px-6 md:px-14 font-bold my-4 md:my-0 text-sm md:text-lg capitalize text-primary shadow-card w-full md:w-1/2 h-[40vh] md:h-2/5 md:absolute left-0 z-10 leading-5"><div className="w-full lg:text-6xl text-4xl text-center left-0 top-10 uppercase bg-gradient-to-t from-[#837f7f42] from-25% -z-10 to-gray-600 bg-clip-text text-transparent py-2">{props.title}</div>{props.text}</div>
       )}
-      <div className="h-full md:w-3/5">
+      <div className="h-[90vh] w-full md:h-full md:w-3/5">
         <div className="w-full h-2/5  mb-4">
           {isLoading ? (
             <Skeleton className="w-full h-full" />

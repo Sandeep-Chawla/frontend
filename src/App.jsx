@@ -20,6 +20,7 @@ function App() {
       <Route path="/Calculator" element={<Layout><Calculator /></Layout>} />
       <Route path="/contact" element={<Layout><Contact /></Layout>} />
       <Route path="/Listing" element={<Layout><Register/></Layout>} />
+      <Route path="/Register" element={<Layout><Register/></Layout>} />
       </Routes>
     </Router>
   );

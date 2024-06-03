@@ -54,7 +54,7 @@ function HeroSection({
   };
 
   return (
-    <div className="w-full h-[90vh] flex justify-center hero">
+    <div className="w-full h-[70vh] md:h-[90vh] flex justify-center hero">
       {loading ? (
         <Skeleton className="w-[90vw] md:w-[80vw] h-5/6 rounded-[36px] relative flex items-end" />
       ) : (
@@ -66,9 +66,9 @@ function HeroSection({
           <h3 className="letters text-center relative z-10 text-white text-xl md:text-2xl pb-10">
             {heroText}
           </h3>
-          <div className="grid md:grid-cols-[auto,auto,1fr,auto] mx-auto w-10/12 relative origin-bottom items-start py-2 md:py-5 h-auto md:h-24 bg-white rounded-lg md:px-6">
+          <div className="grid md:grid-cols-[auto,auto,2fr,auto] mx-auto w-10/12 relative origin-bottom items-start py-2 md:py-5 h-auto md:h-24 bg-white rounded-lg md:px-6">
             <Select
-              className="city cursor-pointer px-4 text-primary rounded-s-full z-20 bg-white text-2xl outline-none font-bold hidden md:block"
+              className="city cursor-pointer text-primary rounded-s-full z-20 bg-white text-2xl outline-none font-bold hidden md:block"
               classNamePrefix="react-select"
               value={selectedOption}
               onChange={handleChange}
@@ -77,7 +77,7 @@ function HeroSection({
               styles={customStyles}
             />
             <Select
-              className="locality cursor-pointer px-4 text-primary z-20 bg-white text-2xl outline-none font-bold hidden md:block"
+              className="locality cursor-pointer text-primary z-20 bg-white text-2xl outline-none font-bold hidden md:block"
               classNamePrefix="react-select"
               value={selectedOption}
               onChange={handleChange}

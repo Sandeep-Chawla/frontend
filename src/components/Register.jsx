@@ -16,9 +16,8 @@ function Register() {
   return (
     
     <div className="flex w-[90vw] md:w-[80vw] mx-auto">
-      <div className="w-1/3"></div>
-      <div className="w-1/3"></div>
-      <div className="w-1/3 px-6">
+      <div className="w-1/2"><img src="Designer.png" alt="" /></div>
+      <div className="w-[400px] px-6">
         <h3>Let's get you started</h3>
         <div className="mt-6">
           <h6 className="mb-4">You are:</h6>
@@ -134,7 +133,7 @@ function Register() {
               Rent/Lease
             </label>
             <label
-              className={`cursor-pointer px-4 py-2 border rounded-full transition-colors ${
+              className={`cursor-pointer whitespace-nowrap px-4 py-2 border rounded-full transition-colors ${
                 selected2 === "3"
                   ? "bg-[#1b557730] border-primary"
                   : "border-gray-300"
