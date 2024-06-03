@@ -14,7 +14,6 @@ import Sidebar from "../components/Sidebar";
 import Slider from "../components/Slider";
 import Section_two from "../components/Section_two";
 import TrendingCard from "../components/TrendingCard";
-import HeroSection from "../components/HeroSection";
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 
@@ -25,6 +24,7 @@ import 'swiper/css/navigation';
 
 // Import required modules
 import { Pagination, Navigation } from 'swiper/modules';
+import HeroSection from "../components/HeroSection";
 
 library.add(fas, fab);
 

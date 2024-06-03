@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import SearchBar from "./Search";
 import anime from "animejs/lib/anime.es.js";
 
-function HeroSection({
+function heroSection({
   heroImage,
   heroText,
   loading,
@@ -59,7 +59,7 @@ function HeroSection({
         <Skeleton className="w-[90vw] md:w-[80vw] h-5/6 rounded-[36px] relative flex items-end" />
       ) : (
         <div
-          className={`bg-cover bg-center w-11/12 md:w-10/12 rounded-[36px] relative flex flex-col justify-center h-5/6 ${isFocused ? 'focused' : ''}`}
+          className={`bg-cover bg-center w-11/12 md:w-10/12 rounded-[36px] relative flex flex-col justify-start md:justify-center pt-[10vh] md:pt-0 h-5/6 ${isFocused ? 'focused' : ''}`}
           style={{ backgroundImage: `url(${heroImage})` }}
         >
           <div className="w-full h-full absolute top-0 left-0 bg-[#00000050] rounded-[36px]"></div>
@@ -94,7 +94,7 @@ function HeroSection({
               </span>
               <SearchBar onFocus={handleFocus} onBlur={handleBlur} />
               <div
-                className={`col-span-3 h-52 border-t-2 my-2 ${
+                className={`col-span-3 h-52 border-t-2 my-2 shadow ${
                     isFocused ? "block" : "hidden"
                   }`}
               ></div>
@@ -109,4 +109,4 @@ function HeroSection({
   );
 }
 
-export default HeroSection;
+export default heroSection;
