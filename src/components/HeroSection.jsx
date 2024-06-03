@@ -63,12 +63,12 @@ function HeroSection({
           style={{ backgroundImage: `url(${heroImage})` }}
         >
           <div className="w-full h-full absolute top-0 left-0 bg-[#00000050] rounded-[36px]"></div>
-          <h3 className="letters text-center relative z-10 text-white text-2xl pb-10">
+          <h3 className="letters text-center relative z-10 text-white text-xl md:text-2xl pb-10">
             {heroText}
           </h3>
-          <div className="grid md:grid-cols-[auto,auto,1fr,auto] mx-auto w-10/12 relative origin-bottom  items-start h-14 bg-white rounded-full">
+          <div className="grid md:grid-cols-[auto,auto,1fr,auto] mx-auto w-10/12 relative origin-bottom items-start py-2 md:py-5 h-auto md:h-24 bg-white rounded-lg md:px-6">
             <Select
-              className="city cursor-pointer px-4 text-primary rounded-s-full z-20 bg-white text-2xl outline-none font-bold"
+              className="city cursor-pointer px-4 text-primary rounded-s-full z-20 bg-white text-2xl outline-none font-bold hidden md:block"
               classNamePrefix="react-select"
               value={selectedOption}
               onChange={handleChange}
@@ -77,7 +77,7 @@ function HeroSection({
               styles={customStyles}
             />
             <Select
-              className="locality cursor-pointer px-4 text-primary z-20 border-l-2 bg-white text-2xl outline-none font-bold"
+              className="locality cursor-pointer px-4 text-primary z-20 bg-white text-2xl outline-none font-bold hidden md:block"
               classNamePrefix="react-select"
               value={selectedOption}
               onChange={handleChange}
@@ -99,7 +99,7 @@ function HeroSection({
                   }`}
               ></div>
             </div>
-            <div className="hidden md:flex bg-[#ff0000] text-center px-12 py-2 h-14 font-semibold text-white text-sm items-center cursor-pointer rounded-e-full">
+            <div className="hidden md:flex bg-[#ff0000] text-center px-12 py-2 h-14 font-semibold text-white text-sm items-center cursor-pointer rounded-lg">
               Search
             </div>
           </div>

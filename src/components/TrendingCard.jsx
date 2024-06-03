@@ -2,7 +2,7 @@ import React from 'react';
 
 const TrendingCard = ({property}) => {
   return (
-    <div className="relative flex w-80 flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md mx-2">
+    <div className="relative flex w-80 flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md ">
       <div className="relative mx-4 -mt-6 h-40 overflow-hidden rounded-xl bg-clip-border text-white shadow-lg shadow-blue-gray-500/40">
         <img src="https://www.theapexgroup.in/images/projects/ongoing/kremlin1.png" alt="" />
       </div>

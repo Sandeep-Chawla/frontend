@@ -1,169 +1,90 @@
 import React from "react";
-import { useState } from "react";
 
 function listing() {
-  const [step, setStep] = useState(1);
-  const [selected, setSelected] = useState("");
-  const [selected2, setSelected2] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
-
-  const handleChange = (event) => {
-    const { value } = event.target;
-    const regex = /^[0-9\b]+$/;
-    if (value === "" || (regex.test(value) && value.length <= 10)) {
-      setPhoneNumber(value);
-    }
-  };
   return (
-    
-    <div className="flex w-[90vw] md:w-[80vw] mx-auto">
-      <div className="w-1/3"></div>
-      <div className="w-1/3"></div>
-      <div className="w-1/3 px-6">
-        <h3>Let's get you started</h3>
-        <div className="mt-6">
-          <h6 className="mb-4">You are:</h6>
-          <input
-            type="radio"
-            className="hidden"
-            value="1"
-            name="youAre"
-            id="owner"
-            checked={selected === "1"}
-            onChange={() => setSelected("1")}
-          />
-          <input
-            type="radio"
-            className="hidden"
-            value="2"
-            name="youAre"
-            id="agent"
-            checked={selected === "2"}
-            onChange={() => setSelected("2")}
-          />
-          <input
-            type="radio"
-            className="hidden"
-            value="3"
-            name="youAre"
-            id="builder"
-            checked={selected === "3"}
-            onChange={() => setSelected("3")}
-          />
-          <div className="flex gap-6">
-            <label
-              className={`cursor-pointer px-4 py-2 border rounded-full transition-colors ${
-                selected === "1"
-                  ? "bg-[#1b557730] border-primary"
-                  : "border-gray-300"
-              }`}
-              htmlFor="owner"
-            >
-              Owner
-            </label>
-            <label
-              className={`cursor-pointer px-4 py-2 border rounded-full transition-colors ${
-                selected === "2"
-                  ? "bg-[#1b557730] border-primary"
-                  : "border-gray-300"
-              }`}
-              htmlFor="agent"
-            >
-              Agent
-            </label>
-            <label
-              className={`cursor-pointer px-4 py-2 border rounded-full transition-colors ${
-                selected === "3"
-                  ? "bg-[#1b557730] border-primary"
-                  : "border-gray-300"
-              }`}
-              htmlFor="builder"
-            >
-              Builder
-            </label>
-          </div>
+    <div className="w-1/2 mx-auto">
+      <div>Sell or Rent your Property</div>
+      <p>You are posting this property for FREE!</p>
+      <div>
+        <h6>Personal Details</h6>
+        {/* radio buttons */}
+        <div className="flex w-1/2 gap-4 items-center">
+          <p>I am</p>
+          <span className="flex items-center">
+            <input className="w-4 mr-2" type="radio" name="who" id="owner" />
+            <label htmlFor="owner">Owner</label>
+          </span>
+          <span className="flex items-center">
+            <input className="w-4 mr-2" type="radio" name="who" id="agent" />
+            <label htmlFor="agent">Agent</label>
+          </span>
+          <span className="flex items-center">
+            <input className="w-4 mr-2" type="radio" name="who" id="builder" />
+            <label htmlFor="builder">Builder</label>
+          </span>
         </div>
+        {/* end radio buttons */}
 
-        <div className="mt-6">
-          <h6 className="mb-4">You are here to:</h6>
-          <input
-            type="radio"
-            className="hidden"
-            value="1"
-            name="youArehere"
-            id="sell"
-            checked={selected2 === "1"}
-            onChange={() => setSelected2("1")}
-          />
-          <input
-            type="radio"
-            className="hidden"
-            value="2"
-            name="youArehere"
-            id="rent"
-            checked={selected2 === "2"}
-            onChange={() => setSelected2("2")}
-          />
-          <input
-            type="radio"
-            className="hidden"
-            value="3"
-            name="youArehere"
-            id="pg"
-            checked={selected2 === "3"}
-            onChange={() => setSelected2("3")}
-          />
-          <div className="flex gap-6">
-            <label
-              className={`cursor-pointer px-4 py-2 border rounded-full transition-colors ${
-                selected2 === "1"
-                  ? "bg-[#1b557730] border-primary"
-                  : "border-gray-300"
-              }`}
-              htmlFor="sell"
-            >
-              Sell
-            </label>
-            <label
-              className={`cursor-pointer px-4 py-2 border rounded-full transition-colors ${
-                selected2 === "2"
-                  ? "bg-[#1b557730] border-primary"
-                  : "border-gray-300"
-              }`}
-              htmlFor="rent"
-            >
-              Rent/Lease
-            </label>
-            <label
-              className={`cursor-pointer px-4 py-2 border rounded-full transition-colors ${
-                selected2 === "3"
-                  ? "bg-[#1b557730] border-primary"
-                  : "border-gray-300"
-              }`}
-              htmlFor="pg"
-            >
-              List as PG
-            </label>
-          </div>
+        <div>
+            <label htmlFor="name">Name</label>
+            <input type="text" name="name" id="name" placeholder="Enter Your Name" />
         </div>
-        <div className="mt-6">
-          <h6>Your Contact number</h6>
-          <input
-            type="tel"
-            placeholder="WhatsApp Number"
-            className="mt-4 border-b-2 py-2"
-            value={phoneNumber}
-            onChange={handleChange}
-            maxLength="10"
-          />
+        <div>
+            <label htmlFor="mobile">mobile</label>
+            <input type="tel" name="mobile" id="mobile" placeholder="WhatsApp Number" />
         </div>
-        <div className="border-2 my-4 bg-[#1b557720]  border-primary px-4 py-2 font-semibold rounded-lg">
+        <div className="border-2 my-4 bg-[#1b557720] w-1/2 border-primary px-4 py-2 font-semibold rounded-lg">
           Enter your WhatsApp No. to get enquiries from Buyer/Tenant
         </div>
-        <button className="w-full rounded-full bg-primary font-medium py-3 text-white">
-          Start Now
-        </button>
+        <div>
+            <label htmlFor="email">Email</label>
+            <input type="email" name="email" id="email" placeholder="Enter Your Email" />
+        </div>
       </div>
+      <div>
+        <h6>Property Details</h6>
+        {/* radio buttons */}
+        <div className="flex w-1/2 gap-4 items-center">
+          <p>For</p>
+          <span className="flex items-center">
+            <input className="w-4 mr-2" type="radio" name="for" id="sale" />
+            <label htmlFor="sale">Sale</label>
+          </span>
+          <span className="flex items-center">
+            <input className="w-4 mr-2" type="radio" name="for" id="rent" />
+            <label htmlFor="rent">Rent/lease</label>
+          </span>
+          <span className="flex items-center">
+            <input className="w-4 mr-2" type="radio" name="for" id="pg" />
+            <label htmlFor="pg">PG/Hostel</label>
+          </span>
+        </div>
+        {/* end radio buttons */}
+        <h6>Property Location</h6>
+        <div>
+            <label htmlFor="city">City</label>
+            <input type="text" name="city" id="city" placeholder="Enter City" />
+        </div>
+        <div>
+            <label htmlFor="locality">Locality</label>
+            <input type="tel" name="locality" id="locality" placeholder="Enter Locality" />
+        </div>
+      </div>
+      <div>
+        <div className="flex">
+            <input className="w-4 mr-4 accent-primary" type="checkbox" name="term1" id="term1" />
+            <label htmlFor="term1"> I am posting this property 'exclusively' on WhiteHat Realty</label>
+        </div>
+        <div className="flex">
+            <input className="w-4 mr-4 accent-primary" type="checkbox" name="term2" id="term2" />   
+            <label htmlFor="term2"> I agree to WhiteHat Realty T&C, Privacy Policy, & Cookie Policy</label>
+        </div>
+        <div className="flex">
+            <input className="w-4 mr-4 accent-primary" type="checkbox" name="term3" id="term3" />
+            <label htmlFor="term3"> I want to receive responses on  Whatsapp</label>
+        </div>
+      </div>
+      <button className="w-fit bg-primary px-6 py-1 rounded text-white">Login & Post Property</button>
     </div>
   );
 }

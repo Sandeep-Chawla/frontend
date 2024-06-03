@@ -174,7 +174,7 @@ function Home() {
       />
       <Sidebar />
       <div className="w-[90vw] md:w-[80vw] mx-auto overflow-x-scroll scrollHide">
-        <h3>The Most Searched Properties</h3>
+        <h3 className="text-xl md:text-2xl">The Most Searched Properties</h3>
         <div className="border-b-[1px] border-gray-400 mb-4 flex gap-4 font-medium pb-2">
           {cities.map((item, i) => (
             <span
@@ -204,9 +204,8 @@ function Home() {
           pagination={{
             clickable: true,
           }}
-          navigation={true}
-          modules={[Pagination, Navigation]}
-          className="mySwiper py-10 px-3"
+          modules={[Pagination]}
+          className="mySwiper py-10"
         >
           {getFilteredProperties().map((property, index) => (
             <SwiperSlide key={index}>
@@ -217,7 +216,7 @@ function Home() {
       </div>
       <div className="h-[50vh]"></div>
       <Slider slides={slides} loading={loading} />
-      <div className="text-center text-primary text-5xl font-bold py-10">
+      <div className="text-center text-primary text-xl md:text-5xl font-bold py-10">
         How Do We Review a Property
       </div>
       {/* location */}

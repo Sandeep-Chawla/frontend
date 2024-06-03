@@ -19,7 +19,7 @@ function Section(props) {
       {isLoading ? (
         <Skeleton className="w-6/12 md:h-2/5 absolute top-40 left-0" />
       ) : (
-        <div before={props.title} className="bg-[#EBE8E8] flex items-center py-10 px-14 font-bold my-4 md:my-0 text-lg capitalize text-primary shadow-card w-full md:w-1/2 md:h-2/5 md:absolute left-0 z-10 before:content-[attr(before)] before:w-full before:absolute before:text-6xl before:text-center before:left-0 before:top-10 before:uppercase before:bg-gradient-to-t before:from-[#837f7f42] before:from-25% before:-z-10 before:to-gray-600 before:bg-clip-text before:text-transparent">{props.text}</div>
+        <div className="bg-[#EBE8E8] flex items-center flex-col justify-center py-10 px-4 md:px-14 font-bold my-4 md:my-0 text-lg capitalize text-primary shadow-card w-full md:w-1/2 h-[40vh] md:h-2/5 md:absolute left-0 z-10 leading-5"><div className="w-full md:text-6xl text-4xl text-center left-0 top-10 uppercase bg-gradient-to-t from-[#837f7f42] from-25% -z-10 to-gray-600 bg-clip-text text-transparent py-2">{props.title}</div>{props.text}</div>
       )}
       <div className="h-full md:w-3/5">
         <div className="w-full h-2/5  mb-4">

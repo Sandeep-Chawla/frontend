@@ -97,7 +97,7 @@ const SearchBar = ({ onFocus, onBlur }) => {
       type="text"
       placeholder={"Search " + placeholderTexts[placeholderIndex]}
       id="animated-placeholder"
-      className="w-3/4 outline-none border-l-2 px-3 h-6 md:h-10"
+      className="md:w-3/4 outline-none border-l-2 px-3 h-6 md:h-10"
       value={query}
       onChange={(e) => setQuery(e.target.value)}
       onFocus={onFocus} // Pass onFocus event handler
@@ -106,7 +106,7 @@ const SearchBar = ({ onFocus, onBlur }) => {
     <span className="justify-self-end relative flex cursor-pointer justify-center items-center"onClick={toggleListening}>
                 <FontAwesomeIcon
                   icon="fa-solid fa-microphone"
-                  className="text-primary"
+                  className="text-primary w-5 mx-2"
                 />
                 <div className={`bg-primary p-2 rounded-full absolute ${listening ? 'animate-ping block' : 'hidden'}`}></div>
               </span>
