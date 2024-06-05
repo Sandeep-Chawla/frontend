@@ -260,7 +260,7 @@ function Home() {
           ))}
         </Swiper>
       </div>
-      <div className="h-[50vh] w-[90vw] md:w-[80vw] mx-auto">
+      <div className="min-h-[50vh] w-[90vw] md:w-[80vw] mx-auto mb-6">
         <QuoteForm 
         loading={loading}
         selectedOption={selectedOption}

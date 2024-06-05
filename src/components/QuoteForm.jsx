@@ -19,7 +19,7 @@ function QuoteForm({
   return (
     <>
     <h3 className="text-xl md:text-2xl my-3 border-b-[1px] border-gray-400 mb-4 pb-2">Request a CallBack</h3>    
-    <div className="grid grid-cols-[auto,auto] md:grid-cols-[auto,auto,auto,auto] justify-items-start mx-auto w-[90vw] md:w-[80vw] relative items-center gap-3 py-5 shadow-2xl bg-white rounded-lg px-6 ">
+    <div className="grid md:grid-cols-[auto,auto] lg:grid-cols-[auto,auto,auto,auto] justify-items-start mx-auto w-[90vw] md:w-[80vw] relative items-center gap-3 py-5 shadow-2xl bg-white rounded-lg px-6 ">
       <Select
         className="city w-full cursor-pointer text-primary rounded-s-full z-20 bg-white text-2xl font-bold "
         classNamePrefix="react-select"
