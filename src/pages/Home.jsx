@@ -15,16 +15,17 @@ import Slider from "../components/Slider";
 import Section_two from "../components/Section_two";
 import TrendingCard from "../components/TrendingCard";
 
-import { Swiper, SwiperSlide } from 'swiper/react';
+import { Swiper, SwiperSlide } from "swiper/react";
 
 // Import Swiper styles
-import 'swiper/css';
-import 'swiper/css/pagination';
-import 'swiper/css/navigation';
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
 
 // Import required modules
-import { Pagination, Navigation } from 'swiper/modules';
+import { Pagination, Navigation } from "swiper/modules";
 import HeroSection from "../components/HeroSection";
+import QuoteForm from "../components/QuoteForm";
 
 library.add(fas, fab);
 
@@ -39,6 +40,18 @@ const cities = [
   { value: "noida", label: "Noida" },
   { value: "gaziabad", label: "Gaziabad" },
 ];
+const propertyType = [
+  { value: "Villa", label: "Villa" },
+  { value: "BuilderFloor", label: "Builder Floor" },
+  { value: "Apartment", label: "Apartment" },
+];
+const budget = [
+  { value: "50lakh-90lakh", label: "50lakh-90lakh" },
+  { value: "90lakh-1.25Cr", label: "90lakh-1.25Cr" },
+  { value: "1.25Cr-1.5Cr", label: "1.25Cr-1.5Cr" },
+  { value: "1.5Cr +", label: "1.5Cr +" },
+];
+
 
 // Sample property data
 const properties = [
@@ -51,6 +64,9 @@ const properties = [
 
 function Home() {
   const [selectedOption, setSelectedOption] = useState(null);
+  const [selectedOption2, setSelectedOption2] = useState(null);
+  const [selectedOption3, setSelectedOption3] = useState(null);
+  const [selectedOption4, setSelectedOption4] = useState(null);
   const [heroImage, setHeroImage] = useState("");
   const [heroText, setHeroText] = useState("");
   const [loading, setLoading] = useState(true);
@@ -58,12 +74,14 @@ function Home() {
   const [twoSectionsData, setTwoSectionsData] = useState([]);
   const [logoData, setLogoData] = useState([]);
   const [slides, setSlides] = useState([]);
-  const [selectedCity, setSelectedCity] = useState(cities[0]?.label || '');
+  const [selectedCity, setSelectedCity] = useState(cities[0]?.label || "");
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("https://whitehat.realty/api/v1/get-home-data");
+        const response = await fetch(
+          "https://whitehat.realty/api/v1/get-home-data"
+        );
         const data = await response.json();
         const heroData = data.api_data.heroSection;
         const insightsData = data.api_data.insights;
@@ -76,7 +94,7 @@ function Home() {
         setTwoSectionsData(twoValuesData);
         setLogoData(logoData);
 
-        const sliderImages = data.api_data.sliders.map(item => item.image);
+        const sliderImages = data.api_data.sliders.map((item) => item.image);
         setSlides(sliderImages);
 
         setLoading(false); // Set loading to false when data is loaded
@@ -91,6 +109,15 @@ function Home() {
 
   const handleChange = (selectedOption) => {
     setSelectedOption(selectedOption);
+  };
+  const handleChange2 = (selectedOption) => {
+    setSelectedOption2(selectedOption);
+  };
+  const handleChange3 = (selectedOption) => {
+    setSelectedOption3(selectedOption);
+  };
+  const handleChange4 = (selectedOption) => {
+    setSelectedOption4(selectedOption);
   };
 
   const customStyles = {
@@ -129,12 +156,19 @@ function Home() {
       ...provided,
       fontSize: 14,
       color: "#1b5577",
+      width: "100%",
+      zIndex: 1000, // Ensure high z-index for menu
     }),
     menuList: (provided) => ({
       ...provided,
       maxHeight: 150,
+      width: "100%",
       overflowY: "auto",
       borderRadius: "10px",
+    }),
+    menuPortal: (base) => ({
+      ...base,
+      zIndex: 1000, // Ensure high z-index for menu portal
     }),
     singleValue: (provided) => ({
       ...provided,
@@ -145,6 +179,7 @@ function Home() {
       cursor: "pointer",
       color: state.isSelected ? "black" : "",
       backgroundColor: state.isSelected ? "lightgray" : "white",
+      whiteSpace: "nowrap",
       "&:hover": {
         backgroundColor: "lightgray",
       },
@@ -154,10 +189,11 @@ function Home() {
       color: "#1b5577",
     }),
   };
+  
 
   // Function to filter properties based on the selected city
   const getFilteredProperties = () => {
-    return properties.filter(property => property.city === selectedCity);
+    return properties.filter((property) => property.city === selectedCity);
   };
 
   return (
@@ -167,10 +203,13 @@ function Home() {
         heroText={heroText}
         loading={loading}
         selectedOption={selectedOption}
+        selectedOption2={selectedOption2}
         handleChange={handleChange}
+        handleChange2={handleChange2}
         customStyles={customStyles}
         options={options}
         cities={cities}
+        menuPortalTarget={document.body}
       />
       <Sidebar />
       <div className="w-[90vw] md:w-[80vw] mx-auto overflow-x-scroll scrollHide">
@@ -180,7 +219,11 @@ function Home() {
             <span
               key={i}
               onClick={() => setSelectedCity(item.label)}
-              className={`cursor-pointer ${selectedCity === item.label ? 'text-primary font-bold  ' : 'text-gray-500'}`}
+              className={`cursor-pointer ${
+                selectedCity === item.label
+                  ? "text-primary font-bold  "
+                  : "text-gray-500"
+              }`}
             >
               {item.label}
             </span>
@@ -200,7 +243,7 @@ function Home() {
             1200: {
               slidesPerView: 3,
             },
-            1500: {
+            1600: {
               slidesPerView: 4,
             },
           }}
@@ -217,7 +260,24 @@ function Home() {
           ))}
         </Swiper>
       </div>
-      <div className="h-[50vh]"></div>
+      <div className="h-[50vh] w-[90vw] md:w-[80vw] mx-auto">
+        <QuoteForm 
+        loading={loading}
+        selectedOption={selectedOption}
+        selectedOption2={selectedOption2}
+        selectedOption3={selectedOption3}
+        selectedOption4={selectedOption4}
+        handleChange={handleChange}
+        handleChange2={handleChange2}
+        handleChange3={handleChange3}
+        handleChange4={handleChange4}
+        customStyles={customStyles}
+        options={options}
+        cities={cities}
+        propertyType={propertyType}
+        budget={budget}
+        />
+      </div>
       <Slider slides={slides} loading={loading} />
       <div className="text-center text-primary text-xl md:text-5xl font-bold py-10">
         How Do We Review a Property
@@ -236,12 +296,24 @@ function Home() {
       {loading
         ? Array(6)
             .fill()
-            .map((_, index) => <Skeleton key={index} className="h-72 rounded-3xl" />)
+            .map((_, index) => (
+              <Skeleton key={index} className="h-72 rounded-3xl" />
+            ))
         : twoSectionsData.map((item, i) =>
             i % 2 === 0 ? (
-              <CardLeft key={item.id} img={item.image} text={item.description} title={item.title} />
+              <CardLeft
+                key={item.id}
+                img={item.image}
+                text={item.description}
+                title={item.title}
+              />
             ) : (
-              <CardRight key={item.id} img={item.image} text={item.description} title={item.title} />
+              <CardRight
+                key={item.id}
+                img={item.image}
+                text={item.description}
+                title={item.title}
+              />
             )
           )}
       <LogoSlider apiData={logoData} loading={loading} />
@@ -255,9 +327,17 @@ function Home() {
         {loading
           ? Array(6)
               .fill()
-              .map((_, index) => <Skeleton key={index} className="h-72 rounded-3xl" />)
+              .map((_, index) => (
+                <Skeleton key={index} className="h-72 rounded-3xl" />
+              ))
           : apiData.map((item) => (
-              <Card key={item.id} url={item.url} description={item.description} title={item.title} icon={item.icon} />
+              <Card
+                key={item.id}
+                url={item.url}
+                description={item.description}
+                title={item.title}
+                icon={item.icon}
+              />
             ))}
       </div>
     </div>

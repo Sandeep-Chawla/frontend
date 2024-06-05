@@ -10,6 +10,7 @@ import About from './pages/About';
 import Contact from './pages/Contact';
 import Calculator from "./pages/Calculator";
 import Register from "./components/Register";
+import TawkToChat from "./components/TawkToChat";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
       <Route path="/Listing" element={<Layout><Register/></Layout>} />
       <Route path="/Register" element={<Layout><Register/></Layout>} />
       </Routes>
+      <TawkToChat/>
     </Router>
   );
 }

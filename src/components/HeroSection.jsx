@@ -10,7 +10,9 @@ function heroSection({
   heroText,
   loading,
   selectedOption,
+  selectedOption2,
   handleChange,
+  handleChange2,
   customStyles,
   options,
   cities
@@ -66,18 +68,18 @@ function heroSection({
           <h3 className="letters text-center relative z-10 text-white text-xl md:text-2xl pb-10">
             {heroText}
           </h3>
-          <div className="grid md:grid-cols-[auto,auto,2fr,auto] mx-auto w-10/12 relative origin-bottom items-start py-2 md:py-5 h-auto md:h-24 bg-white rounded-lg md:px-6">
+          <div className="grid md:grid-cols-[auto,auto] lg:grid-cols-[auto,auto,1fr,auto] mx-auto w-10/12 relative origin-bottom items-start py-2 md:py-5 h-auto lg:h-24 bg-white rounded-lg md:px-6">
             <Select
-              className="city cursor-pointer text-primary rounded-s-full z-20 bg-white text-2xl outline-none font-bold hidden md:block"
+              className="city cursor-pointer px-3 w-full text-primary rounded-s-full z-20 bg-white text-2xl outline-none font-bold hidden md:block"
               classNamePrefix="react-select"
-              value={selectedOption}
-              onChange={handleChange}
+              value={selectedOption2}
+              onChange={handleChange2}
               options={cities}
               placeholder="CITY"
               styles={customStyles}
             />
             <Select
-              className="locality cursor-pointer text-primary z-20 bg-white text-2xl outline-none font-bold hidden md:block"
+              className="locality w-full px-3 cursor-pointer text-primary z-20 bg-white text-2xl outline-none font-bold hidden md:block"
               classNamePrefix="react-select"
               value={selectedOption}
               onChange={handleChange}
@@ -94,12 +96,12 @@ function heroSection({
               </span>
               <SearchBar onFocus={handleFocus} onBlur={handleBlur} />
               <div
-                className={`col-span-3 h-52 border-t-2 my-2 shadow ${
+                className={`col-span-3 h-52 border-t-2 my-2  ${
                     isFocused ? "block" : "hidden"
                   }`}
               ></div>
             </div>
-            <div className="hidden md:flex bg-[#ff0000] text-center px-12 py-2 h-14 font-semibold text-white text-sm items-center cursor-pointer rounded-lg">
+            <div className="hidden md:flex bg-[#ff0000] justify-center w-fit text-center px-12 py-2 h-14 font-semibold text-white text-sm items-center cursor-pointer rounded-lg">
               Search
             </div>
           </div>
