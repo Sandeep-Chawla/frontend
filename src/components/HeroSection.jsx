@@ -15,7 +15,7 @@ function heroSection({
   handleChange2,
   customStyles,
   options,
-  cities
+  cities,
 }) {
   const [isFocused, setIsFocused] = useState(false);
 
@@ -61,7 +61,9 @@ function heroSection({
         <Skeleton className="w-[90vw] md:w-[80vw] h-5/6 rounded-[36px] relative flex items-end" />
       ) : (
         <div
-          className={`bg-cover bg-center w-11/12 md:w-10/12 rounded-[36px] relative flex flex-col justify-start md:justify-center pt-[10vh] md:pt-0 h-5/6 ${isFocused ? 'focused' : ''}`}
+          className={`bg-cover bg-center w-11/12 md:w-10/12 rounded-[36px] relative flex flex-col justify-start md:justify-center pt-[10vh] md:pt-0 h-5/6 ${
+            isFocused ? "focused" : ""
+          }`}
           style={{ backgroundImage: `url(${heroImage})` }}
         >
           <div className="w-full h-full absolute top-0 left-0 bg-[#00000050] rounded-[36px]"></div>
@@ -97,11 +99,15 @@ function heroSection({
               <SearchBar onFocus={handleFocus} onBlur={handleBlur} />
               <div
                 className={`col-span-3 h-52 border-t-2 my-2  ${
-                    isFocused ? "block" : "hidden"
-                  }`}
+                  isFocused ? "block" : "hidden"
+                }`}
               ></div>
             </div>
-            <div className="hidden md:flex bg-[#ff0000] justify-center w-fit text-center px-12 py-2 h-14 font-semibold text-white text-sm items-center cursor-pointer rounded-lg">
+            <div
+              className={`hidden md:flex bg-[#ff0000] justify-center w-fit text-center px-12 py-2 lg:h-14 font-semibold text-white text-sm items-center cursor-pointer rounded-lg ${
+                isFocused ? "self-start" : "self-center"
+              }`}
+            >
               Search
             </div>
           </div>

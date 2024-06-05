@@ -186,7 +186,7 @@ function Home() {
     }),
     placeholder: (provided) => ({
       ...provided,
-      color: "#1b5577",
+      // color: "#1b5577",
     }),
   };
   
@@ -197,7 +197,7 @@ function Home() {
   };
 
   return (
-    <div className="bg-[url(background3.jpg)]">
+    <div className="bg-[url(background3.jpg)] pt-6">
       <HeroSection
         heroImage={heroImage}
         heroText={heroText}

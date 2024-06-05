@@ -15,9 +15,9 @@ function Register() {
   };
   return (
     
-    <div className="flex w-[90vw] md:w-[80vw] mx-auto">
-      <div className="w-1/2"><img src="Designer.png" alt="" /></div>
-      <div className="w-[400px] px-6">
+    <div className="flex flex-col-reverse w-[90vw] md:w-[80vw] mx-auto">
+      <div className="md:w-1/2 py-20"><img src="Designer.png" alt="" /></div>
+      <div className="w-[350px] md:px-6">
         <h3>Let's get you started</h3>
         <div className="mt-6">
           <h6 className="mb-4">You are:</h6>
